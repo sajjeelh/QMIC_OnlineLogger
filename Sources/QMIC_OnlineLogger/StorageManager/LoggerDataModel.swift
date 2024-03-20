@@ -6,14 +6,13 @@
 //
 
 import Foundation
-import SwiftyJSON
-
+ 
 public class LoggerDataModel : Codable {
     var id: String
     var timestamp: Date
-    var data: JSON // Ensure this can be encoded/decoded properly.
+    var data: Data // Ensure this can be encoded/decoded properly.
     
-    public init(id: String, timestamp: Date, data: JSON) {
+    public init(id: String, timestamp: Date, data: Data) {
         self.id = id
         self.timestamp = timestamp
         self.data = data
