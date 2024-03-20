@@ -25,11 +25,10 @@ class DiskStorage {
         }
     }
     
-    func saveChunk(data: LoggerDataModel, chunkIndex: Int) {
+    func saveChunk(data: Data, chunkIndex: Int) {
         let fileURL = directoryURL.appendingPathComponent("chunk_\(chunkIndex).json")
         do {
-            let data = try JSONEncoder().encode(data)
-            try data.write(to: fileURL)
+             try data.write(to: fileURL)
         } catch {
             print("Failed to save chunk to disk: \(error)")
         }
@@ -47,7 +46,7 @@ class DiskStorage {
         }
     }
     
-    func saveToDisk(data: [LoggerDataModel]) {
+    func saveToDisk(data: [Data]) {
         var i = 0
         for loggerDataModel in data {
             saveChunk(data: loggerDataModel, chunkIndex: i)
@@ -57,18 +56,15 @@ class DiskStorage {
     }
     
     
-    func loadDataFromDisk() -> [LoggerDataModel] {
-        var allDataModels: [LoggerDataModel] = []
+    func loadDataFromDisk() -> [Data] {
+        var allDataModels: [Data] = []
         
         do {
             let fileURLs = try fileManager.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
             
             for fileURL in fileURLs {
-                if fileURL.pathExtension == "json" {
                     let data = try Data(contentsOf: fileURL)
-                    let dataModels = try JSONDecoder().decode([LoggerDataModel].self, from: data)
-                    allDataModels.append(contentsOf: dataModels)
-                }
+                    allDataModels.append(data)
             }
         } catch {
             print("Failed to load data from disk: \(error)")

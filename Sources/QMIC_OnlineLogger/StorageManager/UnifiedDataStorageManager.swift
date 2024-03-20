@@ -25,7 +25,7 @@ public class UnifiedDataStorageManager {
     
     
 
-    public func saveData(_ dataModel: LoggerDataModel) {
+    public func saveData(_ dataModel: Data) {
         // First, save data to memory.
         memoryStorage.addData(dataModel)
 
