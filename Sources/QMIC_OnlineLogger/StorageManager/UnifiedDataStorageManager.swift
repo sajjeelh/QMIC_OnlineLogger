@@ -7,13 +7,13 @@
 
 import Foundation
 
-class UnifiedDataStorageManager {
+public class UnifiedDataStorageManager {
     private let memoryStorage: MemoryStorage
     private let diskStorage: DiskStorage
     private let dataSyncManager: DataSyncManager
     private var chunkIndex = 0
 
-    init() {
+    public init() {
         self.memoryStorage = MemoryStorage()
         self.diskStorage = DiskStorage()
         self.dataSyncManager = DataSyncManager(memoryStorage: memoryStorage, diskStorage: diskStorage)
@@ -25,7 +25,7 @@ class UnifiedDataStorageManager {
     
     
 
-    func saveData(_ dataModel: LoggerDataModel) {
+    public func saveData(_ dataModel: LoggerDataModel) {
         // First, save data to memory.
         memoryStorage.addData(dataModel)
 

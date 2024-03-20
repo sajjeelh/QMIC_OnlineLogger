@@ -12,6 +12,7 @@ let package = Package(
             targets: ["QMIC_OnlineLogger"]),
     ],
     dependencies: [
+        
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON", .upToNextMajor(from: "5.0.1"))
     ],
     targets: [
